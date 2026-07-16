@@ -7,35 +7,38 @@ function LoginScreen() {
   return (
     <div className="loginScreen">
       <div className="loginScreen_background">
-        <h1 
-          className="nav_logo" 
-          style={{ position: 'absolute', margin: 0, left: '20px', top: '20px' }}
+        <h1
+          className="nav_logo"
+          onClick={() => setSignIn(false)}
+          style={{ position: 'absolute', margin: 0, left: '20px', top: '20px', cursor: 'pointer' }}
         >
           NETFLIX
         </h1>
-        <button 
-          onClick={() => setSignIn(true)} 
-          className="loginScreen_button"
-          style={{
-            position: 'fixed',
-            right: '20px',
-            top: '20px',
-            padding: '10px 20px',
-            fontSize: '1rem',
-            color: 'white',
-            backgroundColor: '#e50914',
-            fontWeight: '600',
-            border: 'none',
-            cursor: 'pointer',
-            zIndex: 10
-          }}
-        >
-          Sign In
-        </button>
+        {!signIn && (
+          <button
+            onClick={() => setSignIn(true)}
+            className="loginScreen_button"
+            style={{
+              position: 'fixed',
+              right: '20px',
+              top: '20px',
+              padding: '10px 20px',
+              fontSize: '1rem',
+              color: 'white',
+              backgroundColor: '#e50914',
+              fontWeight: '600',
+              border: 'none',
+              cursor: 'pointer',
+              zIndex: 10
+            }}
+          >
+            Sign In
+          </button>
+        )}
         <div className="loginScreen_gradient" />
       </div>
 
-      <div className="loginScreen_body">
+      <div className="loginScreen_body" style={signIn ? { top: '30px' } : {}}>
         {signIn ? (
           <SignupScreen />
         ) : (
