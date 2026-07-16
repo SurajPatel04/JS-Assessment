@@ -10,6 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [currentRoute, setCurrentRoute] = useState('home');
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
@@ -23,6 +24,7 @@ function App() {
       } else {
         setUser(null);
       }
+      setIsAuthLoading(false);
     });
 
     const handleOnline = () => setIsOffline(false);
@@ -50,7 +52,11 @@ function App() {
         </div>
       )}
       
-      {!user ? (
+      {isAuthLoading ? (
+        <div className="auth-loading">
+          <h1 className="nav_logo">NETFLIX</h1>
+        </div>
+      ) : !user ? (
         <LoginScreen />
       ) : (
         <>
