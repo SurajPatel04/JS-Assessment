@@ -29,7 +29,7 @@ function ProfileScreen({ user, navigate }) {
   return (
     <div className="profileScreen">
       <div className="profileScreen_body">
-        <h1>Edit Profile</h1>
+        <h1>Profile</h1>
         <div className="profileScreen_info">
           <img
             src="https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
