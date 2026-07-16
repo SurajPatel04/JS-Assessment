@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { auth } from '../firebase';
+import { useToast } from '../context/ToastContext';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 function SignupScreen() {
@@ -10,6 +11,7 @@ function SignupScreen() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
 
   const getErrorMessage = (error) => {
     switch (error.code) {
@@ -60,7 +62,7 @@ function SignupScreen() {
         updateProfile(authUser.user, {
           displayName: nameRef.current.value
         }).then(() => {
-          console.log("Registered with name:", authUser.user.displayName);
+          showToast(`✓ Account created successfully!`);
         });
       })
       .catch((error) => {
@@ -88,7 +90,7 @@ function SignupScreen() {
       passwordRef.current.value
     )
       .then((authUser) => {
-        console.log("Signed in:", authUser);
+        showToast(`✓ Logged in successfully!`);
       })
       .catch((error) => {
         setErrorMsg(getErrorMessage(error));
